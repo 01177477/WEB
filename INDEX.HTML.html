@@ -2,82 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title> project class </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIDE IN HTML FOR BEGINNERS </title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        .hrry {
-            width: 500px;
-            height: 400px;
-            background-color: green;
-            /* background-color: red; */
-position: absolute;
-          left: 200px;
-          border: 1px blue;
-          border-radius: 10px;
-          top: 100px;
-          overflow:hidden;
-          transition: all 5s linear;
-          /* box-shadow: 1 1 15px blue; */
-
-       
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding:0;
         }
-        .hrry:hover{
-            box-shadow: 1 1 15px blue;
-            background-color:red;
-            transform: scale(2);
+        .slider{
+            position: relative ;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+
+            
+        }
+        .slides{
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img{
+            width: 100%;
+            height: auto;
+        }
+        .prev,.next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: WHITE;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .prev{
+            left: 10px;
+            border-radius: 4PX;
+            font-weight: 15PX;
+            font-size: 25PX;
+            background-color: aqua;
+            font-style: BOLD;
 
         }
-        .head h1 {
-            font-size: 40px;
-            margin-left: 100px;
-            color: white;
+        .next{
+            right: 10px;
+            border-radius: 3PX;
+            font-weight: 15PX;
+            font-size: 25PX;
+            background-color: aqua;
+
         }
-       .head p2 {
-        color: black;
-        font-size: 30px;
-    position: absolute;
-       left:100px;
-       top: 150px;
-       }
-       .footer {
-        color: blue;
-     font-size: 35px;
-     background-color: white;
-    text-transform: uppercase;
-     width: fit-content;
-     margin-top: 200px;
-     margin-left: 40px;
-     border: 2px solid black;
-     border-radius: 10px;   
-       }
-       .footer:hover {
-        background-color: green;
-        box-shadow: 0 1 10px black;
-       }
-
-
- 
-           
-
+        .next:hover{
+            background-color: black;
+        }
+        .prev:hover{
+            background-color: black;
+        }
+        .dots{
+            text-align: center;
+            margin: 10px 0;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: lightgray;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dot.active{
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
-
-
-    <h1>Hello JavaScript...</h1>
-    <div class="hrry">
-        <div class="head">
-            <h1>heading 0ne </h1>
-            <p2> heading one is the first<br> part of this page </p2>
-             </div>
-
-            <div class="footer">
-           <p1>footer one </p1>
-       
+    <div class="slider">
+        <div class="slides">
+            <img src="../deerr.jpg" alt="image1">
+            <img src="../1722608155676_6r3kiq_2_0.jpg" alt="image2">
+            <img src="../1722608457285_75fsmv_2_0.jpg" alt="image3">
         </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </div>
-    
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    <script>
+        const slides = document.querySelector('.slides');
+        const image = slides.querySelectorAll('img');
+        const dots = document.querySelectorAll('.dot');
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+        let index = 0;
+        const updateslider = ()=>{
+            slides.style.transform =`translateX(-${index * 100}%)`;
+            dots.forEach(dot => 
+            dot.classlist.remove('active'));
+            dots[index].classlist.add('active');};
+              const shownext =()=> {
+                index = (index+1)%images.length;
+                updateslider();
+              };
+              const showprev =()=>{
+                index=(index - 1+ images.length) % images.length;
+                updateslider();
+              };
+              next.addEventListener('click', shownext);
+              prev.addEventListener('click', showprev);
+              dots.forEach((dot,dotIndex) => {
+                dot.addEventListener('click',()=>  {
+                    index = dotIndex;
+                    updateslider();
+                });
+            });
+
+              
+              
+
+        
+    </script>
 </body>
 </html>
-    
-  
